@@ -12,16 +12,10 @@ app-server runtime and typed JSON-RPC protocol.
 
 ## Install
 
-To install just the Codex adapter by itself:
+To install NeMo Fabric with the Codex adapter:
 
 ```bash
 pip install "nemo-fabric[codex]"
-```
-
-To install just the Codex adapter along with the NeMo Fabric Runtime:
-
-```bash
-pip install "nemo-fabric[codex, runtime]"
 ```
 
 ## Authentication
@@ -59,7 +53,7 @@ login. Set the endpoint in
 `models.default.settings.base_url` or `NVIDIA_FRONTIER_BASE_URL`; the adapter
 does not assume a default frontier endpoint.
 
-The adapter depends on the Codex SDK, which installs and selects its matching
+The adapter uses the Codex SDK, which installs and selects its matching
 app-server runtime. NeMo Fabric does not declare the runtime package directly or
 treat it as a user-installed command or adapter descriptor requirement.
 

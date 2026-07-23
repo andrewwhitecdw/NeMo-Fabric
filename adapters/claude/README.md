@@ -9,22 +9,12 @@ The `nvidia.fabric.claude` adapter uses the official Claude Agent SDK for
 Python behind NeMo Fabric's normalized invocation contract. The SDK is an
 implementation detail; consumers select the Claude harness by adapter ID.
 
-This adapter pins `claude-agent-sdk==0.2.120`. The SDK supplies its compatible
-Claude Code runtime unless `harness.settings.cli_path` explicitly selects
-another executable.
-
 ## Install
 
-To install just the Claude adapter by itself:
+To install NeMo Fabric with the Claude adapter:
 
 ```bash
 pip install "nemo-fabric[claude]"
-```
-
-To install just the Claude adapter along with the NeMo Fabric Runtime:
-
-```bash
-pip install "nemo-fabric[claude, runtime]"
 ```
 
 ## Authentication
@@ -135,8 +125,8 @@ gateway has the same lifecycle as that single invocation.
 The NeMo Fabric result includes `relay_runtime.gateway_config_path`,
 `relay_runtime.gateway_log_path`, and the collected `relay_artifacts`. Relay
 startup failures return a stable adapter error and retain the gateway log for
-diagnosis. The default Claude Agent SDK dependency bundles a compatible Claude
-Code executable. An executable supplied with `cli_path` must support the Relay
+diagnosis. The Claude Agent SDK supplies a bundled Claude Code executable. An
+executable supplied with `cli_path` must support the Relay
 plugin's complete hook set, including `UserPromptExpansion`.
 
 ## Typed Configuration
