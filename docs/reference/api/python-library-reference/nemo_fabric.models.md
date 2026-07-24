@@ -774,6 +774,18 @@ Return a detached JSON-compatible mapping for Rust/core calls.
 NeMo Relay ATOF file sink configuration.
 
 
+
+### Fields
+
+The model defines the following fields:
+
+| Field | Type | Required | Default | Constraints | Description |
+| --- | --- | --- | --- | --- | --- |
+| `type` | `Literal['file']` | No | `'file'` | — | — |
+| `output_directory` | `str \| Path \| None` | No | `None` | — | — |
+| `filename` | `str \| None` | No | `None` | — | — |
+| `mode` | `Literal['append', 'overwrite']` | No | `'append'` | — | — |
+
 ---
 
 ### <kbd>property</kbd> extra_fields
@@ -809,8 +821,8 @@ Returns the set of fields that have been explicitly set on this model instance.
 
 ### <kbd>classmethod</kbd> `from_mapping`
 
-```python
-from_mapping(value: 'Mapping[str, Any]') → Self
+```text
+from_mapping(value: Mapping[str, Any]) -> Self
 ```
 
 Validate a mapping using this Pydantic model.
@@ -820,8 +832,8 @@ Validate a mapping using this Pydantic model.
 
 ### <kbd>method</kbd> `to_mapping`
 
-```python
-to_mapping() → dict[str, Any]
+```text
+to_mapping() -> dict[str, Any]
 ```
 
 Return a detached JSON-compatible mapping for Rust/core calls.
@@ -841,11 +853,14 @@ The model defines the following fields:
 
 | Field | Type | Required | Default | Constraints | Description |
 | --- | --- | --- | --- | --- | --- |
+| `type` | `Literal['stream']` | No | `'stream'` | — | — |
 | `url` | `str` | Yes | — | — | — |
 | `transport` | `Literal['http_post', 'websocket', 'ndjson']` | No | `'http_post'` | — | — |
 | `headers` | `dict[str, str]` | No | `dict()` | — | — |
+| `header_env` | `dict[str, str]` | No | `dict()` | — | — |
 | `timeout_millis` | `int` | No | `3000` | — | — |
 | `field_name_policy` | `Literal['preserve', 'replace_dots']` | No | `'preserve'` | — | — |
+| `name` | `str \| None` | No | `None` | — | — |
 
 ---
 
@@ -915,10 +930,7 @@ The model defines the following fields:
 | Field | Type | Required | Default | Constraints | Description |
 | --- | --- | --- | --- | --- | --- |
 | `enabled` | `bool` | No | `False` | — | — |
-| `output_directory` | `str \| Path \| None` | No | `None` | — | — |
-| `filename` | `str \| None` | No | `None` | — | — |
-| `mode` | `Literal['append', 'overwrite']` | No | `'append'` | — | — |
-| `endpoints` | `list[RelayAtofEndpointConfig \| dict[str, Any]] \| None` | No | `None` | — | — |
+| `sinks` | `list[Annotated[RelayAtofFileSinkConfig \| RelayAtofStreamSinkConfig, Field(discriminator='type')] \| dict[str, Any]] \| None` | No | `None` | — | — |
 
 ---
 
@@ -1292,7 +1304,7 @@ The model defines the following fields:
 
 | Field | Type | Required | Default | Constraints | Description |
 | --- | --- | --- | --- | --- | --- |
-| `version` | `int` | No | `1` | — | — |
+| `version` | `int` | No | `2` | — | — |
 | `atof` | `RelayAtofConfig \| dict[str, Any] \| None` | No | `None` | — | — |
 | `atif` | `RelayAtifConfig \| dict[str, Any] \| None` | No | `None` | — | — |
 | `opentelemetry` | `RelayOtlpConfig \| dict[str, Any] \| None` | No | `None` | — | — |
