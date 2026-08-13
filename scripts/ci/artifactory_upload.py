@@ -67,7 +67,14 @@ def perform_release(published_wheels: list[tuple[Path, str]]) -> int:
 
     error_count = 0
     for package_name, wheel_urls in packages.items():
-        package_id = project_ids[package_name]
+        package_id = project_ids.get(package_name)
+        if package_id is None:
+            print(
+                f"Error: KitMaker project not found for package {package_name}",
+                flush=True,
+            )
+            error_count += 1
+            continue
         wheels_payload = [{
                             "pic": kitmaker_owner,
                             "job_type": "wheel-release-job",
