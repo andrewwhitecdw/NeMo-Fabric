@@ -1,15 +1,33 @@
 ---
 title: "Module config"
 sidebar-title: "config"
-description: "Fabric config models and loading helpers."
-position: 65
+description: "NeMo Fabric config models and loading helpers."
+position: 101
 ---
 {/* SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 SPDX-License-Identifier: Apache-2.0 */}
 
 Generated from `cargo doc --no-deps -p nemo-fabric-core`.
 
-Fabric config models and loading helpers.
+NeMo Fabric config models and loading helpers.
+
+## Re-exports
+
+- `pub use crate::adapter_contract::ADAPTER_CONTRACT_VERSION;`
+- `pub use crate::adapter_contract::AdapterExtensionPoint;`
+- `pub use crate::agent_config::AgentConfig;`
+- `pub use crate::agent_config::AgentHarnessConfig;`
+- `pub use crate::agent_config::AgentInstructionConfig;`
+- `pub use crate::agent_config::AgentInstructionsConfig;`
+- `pub use crate::agent_config::AgentMcpConfig;`
+- `pub use crate::agent_config::AgentMcpServerConfig;`
+- `pub use crate::agent_config::AgentModelConfig;`
+- `pub use crate::agent_config::AgentRuntimeConfig;`
+- `pub use crate::agent_config::AgentSkillConfig;`
+- `pub use crate::agent_config::AgentToolDefinition;`
+- `pub use crate::agent_config::AgentToolsConfig;`
+- `pub use crate::agent_config::AgentWorkflowConfig;`
+- `pub use crate::agent_config::AgentWorkflowEntrypointConfig;`
 
 ## Structs
 
@@ -19,12 +37,14 @@ Fabric config models and loading helpers.
 - [AdapterTelemetryProviderSupport](struct-adaptertelemetryprovidersupport.mdx): Telemetry capabilities for one adapter-supported provider.
 - [AdapterTelemetrySupport](struct-adaptertelemetrysupport.mdx): Adapter telemetry support.
 - [CapabilityPlan](struct-capabilityplan.mdx): Resolved capability configuration.
-- [CapabilityRoute](struct-capabilityroute.mdx): One capability routing decision.
+- [CapabilityRoute](struct-capabilityroute.mdx): One capability execution assignment.
 - [CapabilityTargetPlan](struct-capabilitytargetplan.mdx): Capabilities routed to one target.
 - [EnvironmentConfig](struct-environmentconfig.mdx): Execution environment configuration.
 - [EnvironmentPlan](struct-environmentplan.mdx): Resolved environment plan.
-- [FabricConfig](struct-fabricconfig.mdx): Versioned Fabric agent config.
+- [FabricConfig](struct-fabricconfig.mdx): Versioned NVIDIA NeMo Fabric agent config.
 - [HarnessConfig](struct-harnessconfig.mdx): Harness selection.
+- [InstructionConfig](struct-instructionconfig.mdx): One portable instruction value.
+- [InstructionsConfig](struct-instructionsconfig.mdx): Harness-neutral agent instruction configuration.
 - [McpConfig](struct-mcpconfig.mdx): MCP capability configuration.
 - [McpServerConfig](struct-mcpserverconfig.mdx): MCP server configuration.
 - [McpServerPlan](struct-mcpserverplan.mdx): Resolved MCP server exposure.
@@ -37,27 +57,36 @@ Fabric config models and loading helpers.
 - [RelayConfigPolicy](struct-relayconfigpolicy.mdx): Relay validation policy.
 - [RelayObservabilityConfig](struct-relayobservabilityconfig.mdx): NeMo Relay observability component configuration.
 - [RelayOtlpConfig](struct-relayotlpconfig.mdx): Relay OpenTelemetry/OpenInference export configuration.
-- [ResolveContext](struct-resolvecontext.mdx): Source context used when resolving an in-memory Fabric config.
+- [ResolveContext](struct-resolvecontext.mdx): Source context used when resolving an in-memory NeMo Fabric config.
 - [ResolvedAdapterDescriptor](struct-resolvedadapterdescriptor.mdx): Adapter descriptor selected for a run plan.
-- [RunPlan](struct-runplan.mdx): Resolved Fabric run plan.
+- [RunPlan](struct-runplan.mdx): Resolved NeMo Fabric run plan.
 - [RuntimeCapabilities](struct-runtimecapabilities.mdx): Lifecycle behavior implemented by a resolved runtime path.
-- [RuntimeConfig](struct-runtimeconfig.mdx): Runtime input/output contract.
+- [RuntimeConfig](struct-runtimeconfig.mdx): Invocation runtime contract.
 - [SkillConfig](struct-skillconfig.mdx): Skill capability configuration.
 - [TelemetryConfig](struct-telemetryconfig.mdx): Telemetry configuration.
 - [TelemetryPlan](struct-telemetryplan.mdx): Resolved telemetry plan.
 - [TelemetryProviderConfig](struct-telemetryproviderconfig.mdx): Provider-specific telemetry configuration.
+- [ToolDefinitionConfig](struct-tooldefinitionconfig.mdx): One named normalized tool or tool-group definition.
 - [ToolsConfig](struct-toolsconfig.mdx): Harness-neutral tool capability configuration.
 - [ToolsPlan](struct-toolsplan.mdx): Normalized tool policy for a run.
+- [WorkflowConfig](struct-workflowconfig.mdx): Adapter-owned workflow selection and immutable construction settings.
+- [WorkflowEntrypointConfig](struct-workflowentrypointconfig.mdx): Adapter-owned workflow entry point.
 
 ## Enums
 
-- [AdapterDescriptorSource](enum-adapterdescriptorsource.mdx): Where Fabric resolved an adapter descriptor from.
+- [AdapterConfigField](enum-adapterconfigfield.mdx): Adapter-translated normalized NVIDIA NeMo Fabric configuration fields.
+- [AdapterConfigInput](enum-adapterconfiginput.mdx): Configuration object delivered to an adapter lifecycle host.
+- [AdapterDescriptorSource](enum-adapterdescriptorsource.mdx): Where NeMo Fabric resolved an adapter descriptor from.
 - [AdapterKind](enum-adapterkind.mdx): Adapter implementation kind.
 - [CapabilityKind](enum-capabilitykind.mdx): Capability kind.
-- [CapabilityTarget](enum-capabilitytarget.mdx): Capability routing target.
-- [ControlLocation](enum-controllocation.mdx): Where Fabric control code runs relative to the environment.
-- [EnvironmentOwnership](enum-environmentownership.mdx): Whether Fabric owns the underlying environment resource.
+- [CapabilityTarget](enum-capabilitytarget.mdx): Component responsible for executing a configured capability.
+- [ControlLocation](enum-controllocation.mdx): Where NeMo Fabric control code runs relative to the environment.
+- [EnvironmentOwnership](enum-environmentownership.mdx): Whether NeMo Fabric owns the underlying environment resource.
+- [InstructionMode](enum-instructionmode.mdx): How an instruction value is applied to the selected harness.
+- [McpAuthenticationConfig](enum-mcpauthenticationconfig.mdx): MCP server authentication configuration.
 - [McpExposure](enum-mcpexposure.mdx): MCP exposure strategy.
+- [McpTransport](enum-mcptransport.mdx): MCP server transport.
+- [OAuthTokenEndpointAuthMethod](enum-oauthtokenendpointauthmethod.mdx): OAuth client authentication method used at the token endpoint.
 - [RelayAtifStorageConfig](enum-relayatifstorageconfig.mdx): Relay ATIF remote storage configuration.
 - [RelayAtofMode](enum-relayatofmode.mdx): Relay ATOF file mode.
 - [RelayAtofSinkConfig](enum-relayatofsinkconfig.mdx): Relay ATOF sink configuration.
@@ -68,11 +97,7 @@ Fabric config models and loading helpers.
 - [ResolutionStrategy](enum-resolutionstrategy.mdx): Adapter install or availability strategy.
 - [TelemetryProvider](enum-telemetryprovider.mdx): Telemetry runtime provider.
 
-## Constants
-
-- [ADAPTER_CONTRACT_VERSION](constant-adapter-contract-version.mdx): Adapter descriptor contract version supported by this core.
-
 ## Functions
 
 - [load_adapter_descriptor](fn-load-adapter-descriptor.mdx): Load an adapter descriptor from JSON package metadata.
-- [resolve_run_plan_from_config](fn-resolve-run-plan-from-config.mdx): Resolve a typed Fabric config into a runnable plan.
+- [resolve_run_plan_from_config](fn-resolve-run-plan-from-config.mdx): Resolve a typed NVIDIA NeMo Fabric config into a runnable plan.
